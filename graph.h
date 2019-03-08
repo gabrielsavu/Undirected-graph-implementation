@@ -6,6 +6,7 @@
 #define GRAPH_CLASS_GRAPH_H
 
 #include <iostream>
+#include <queue>
 #include <list>
 
 class Node {
@@ -14,6 +15,7 @@ private:
 public:
     void pushLink(unsigned);
     std::list<unsigned> getLinks();
+    void setLinks(std::list<unsigned>);
 };
 
 
@@ -24,11 +26,21 @@ private:
     Node *nodes;
 public:
     Graph();
+    ~Graph();
     explicit Graph(unsigned);
+    Graph(const Graph&);
     void allocMemory(unsigned);
     void addLink(unsigned, unsigned);
-    friend std::ostream &operator << (std::ostream&, const Graph&);
+    void DFSUtil(unsigned, bool[]);
+    void DFS(unsigned);
+    void connectedComponents();
+    friend std::ostream& operator << (std::ostream&, const Graph&);
     friend std::istream& operator >> (std::istream&, Graph&);
+    bool operator == (const Graph&);
+    bool operator != (const Graph&);
+    bool operator < (const Graph&);
+    Graph& operator = (const Graph&);
+    Graph operator + (const Graph&);
 };
 
 

@@ -11,6 +11,10 @@ std::list<unsigned> Node::getLinks() {
     return this->links;
 }
 
+void Node::setLinks(std::list<unsigned> l){
+    this->links = l;
+}
+
 void Graph::allocMemory(unsigned size) {
     this->nodes = new Node[size];
 }
@@ -23,7 +27,7 @@ void Graph::addLink(unsigned v, unsigned u) {
     this->nodes[u].pushLink(v);
 }
 
-std::ostream &operator << (std::ostream& output, const Graph& G) {
+std::ostream& operator << (std::ostream& output, const Graph& G) {
     unsigned i;
     for(i = 0; i < G.number_of_nodes; i ++) {
         output << i << std::endl;
@@ -53,3 +57,103 @@ Graph::Graph(unsigned nodes) {
 }
 
 Graph::Graph(): number_of_nodes(0), number_of_links(0), nodes(nullptr) {}
+
+Graph::~Graph() {
+    this->number_of_nodes = 0;
+    this->number_of_links = 0;
+    delete[] nodes;
+}
+
+Graph::Graph(const Graph& G) {
+    this->number_of_links = G.number_of_links;
+    this->number_of_nodes = G.number_of_nodes;
+    this->nodes = G.nodes;
+}
+
+Graph& Graph::operator=(const Graph& G) {
+    if (this != &G) {
+        Node* new_nodes = new Node[G.number_of_nodes];
+        std::copy(G.nodes, G.nodes + G.number_of_nodes, new_nodes);
+        //delete[] nodes;
+        nodes = new_nodes;
+        this->number_of_links = G.number_of_links;
+        this->number_of_nodes = G.number_of_nodes;
+    }
+    return *this;
+}
+
+bool Graph::operator < (const Graph& G) {
+    return this->number_of_nodes < G.number_of_nodes;
+}
+
+bool Graph::operator == (const Graph& G) {
+    if (this->number_of_nodes == G.number_of_nodes && this->number_of_links == G.number_of_links) {
+        unsigned i;
+        for (i = 0; i < this->number_of_nodes; i ++) {
+            if (this->nodes[i].getLinks() != G.nodes[i].getLinks())
+                return false;
+        }
+        return true;
+    }
+    return false;
+}
+
+bool Graph::operator != (const Graph& G) {
+    return !(*this == G);
+}
+
+Graph Graph::operator+(const Graph& G) {
+    Graph graph;
+    unsigned i;
+    if (G.number_of_nodes > this->number_of_nodes) {
+        graph = G;
+        for(i = 0; i < this->number_of_nodes; i ++) {
+            graph.nodes[i].getLinks().merge(this->nodes[i].getLinks());
+            graph.nodes[i].getLinks().unique();
+        }
+    }
+    else {
+        graph = *this;
+        for(i = 0; i < G.number_of_nodes; i ++) {
+            graph.nodes[i].getLinks().merge(G.nodes[i].getLinks());
+            graph.nodes[i].getLinks().unique();
+        }
+    }
+
+    return graph;
+}
+
+void Graph::DFSUtil(unsigned node, bool visited[]) {
+    std::queue<unsigned> q;
+    q.push(node);
+    while (!q.empty()) {
+        if (!visited[q.front()]) {
+            std::cout << q.front() << " ";
+            visited[q.front()] = true;
+            for(auto it : this->nodes[q.front()].getLinks())
+                if(!visited[it]) q.push(it);
+        }
+        q.pop();
+    }
+}
+
+void Graph::DFS(unsigned start) {
+    bool *visited = new bool[this->number_of_nodes];
+    for (unsigned i = 0; i < this->number_of_nodes; i++)
+        visited[i] = false;
+
+    DFSUtil(start, visited);
+}
+
+void Graph::connectedComponents() {
+    bool *visited = new bool[this->number_of_nodes];
+    for(unsigned i = 0; i < this->number_of_nodes; i++)
+        visited[i] = false;
+
+    for (unsigned i = 0; i < this->number_of_nodes; i++) {
+        if (!visited[i]) {
+            DFSUtil(i, visited);
+            std::cout << "\n";
+        }
+    }
+}

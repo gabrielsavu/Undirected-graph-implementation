@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.13)
-project(graph_class)
+project(graph_implementation)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(graph_class main.cpp graph.h graph.cpp)
+include_directories(.)
+
+add_executable(graph_implementation
+    graph.cpp
+    graph.h
+    main.cpp node.cpp node.h)

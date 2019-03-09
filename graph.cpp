@@ -3,18 +3,6 @@
 //
 #include "graph.h"
 
-void Node::pushLink(unsigned v) {
-    this->links.push_back(v);
-}
-
-std::list<unsigned> Node::getLinks() {
-    return this->links;
-}
-
-void Node::setLinks(std::list<unsigned> l){
-    this->links = l;
-}
-
 void Graph::allocMemory(unsigned size) {
     this->nodes = new Node[size];
 }
@@ -124,6 +112,21 @@ Graph Graph::operator+(const Graph& G) {
 }
 
 void Graph::DFSUtil(unsigned node, bool visited[]) {
+    std::stack<unsigned> s;
+    s.push(node);
+    while (!s.empty()) {
+        auto v = s.top();
+        s.pop();
+        if (!visited[v]) {
+            std::cout << v << " ";
+            visited[v] = true;
+            for(auto it : this->nodes[v].getLinks())
+                s.push(it);
+        }
+    }
+}
+
+void Graph::BFSUtil(unsigned node, bool visited[]) {
     std::queue<unsigned> q;
     q.push(node);
     while (!q.empty()) {
@@ -143,6 +146,14 @@ void Graph::DFS(unsigned start) {
         visited[i] = false;
 
     DFSUtil(start, visited);
+}
+
+void Graph::BFS(unsigned start) {
+    bool *visited = new bool[this->number_of_nodes];
+    for (unsigned i = 0; i < this->number_of_nodes; i++)
+        visited[i] = false;
+
+    BFSUtil(start, visited);
 }
 
 void Graph::connectedComponents() {

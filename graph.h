@@ -6,18 +6,11 @@
 #define GRAPH_CLASS_GRAPH_H
 
 #include <iostream>
+#include <string>
 #include <queue>
+#include <stack>
 #include <list>
-
-class Node {
-private:
-    std::list<unsigned> links;
-public:
-    void pushLink(unsigned);
-    std::list<unsigned> getLinks();
-    void setLinks(std::list<unsigned>);
-};
-
+#include "node.h"
 
 class Graph {
 private:
@@ -31,8 +24,10 @@ public:
     Graph(const Graph&);
     void allocMemory(unsigned);
     void addLink(unsigned, unsigned);
+    void BFSUtil(unsigned, bool[]);
     void DFSUtil(unsigned, bool[]);
-    void DFS(unsigned);
+    void DFS(unsigned start);
+    void BFS(unsigned start);
     void connectedComponents();
     friend std::ostream& operator << (std::ostream&, const Graph&);
     friend std::istream& operator >> (std::istream&, Graph&);

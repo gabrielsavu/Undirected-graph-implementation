@@ -1,0 +1,24 @@
+Position in memory: 0x176cb8
+Name: 0
+Adjacency list: (0x176d78,3) 
+------------
+Position in memory: 0x176cf8
+Name: 1
+Adjacency list: (0x176d38,2) 
+------------
+Position in memory: 0x176d38
+Name: 2
+Adjacency list: (0x176cf8,1) (0x176d78,3) 
+------------
+Position in memory: 0x176d78
+Name: 3
+Adjacency list: (0x176cb8,0) (0x176d38,2) 
+------------
+DFS from node (0x176cf8,1): (0x176cf8,1) (0x176d38,2) (0x176d78,3) (0x176cb8,0) 
+BFS from node (0x176cf8,1): (0x176cf8,1) (0x176d38,2) (0x176d78,3) (0x176cb8,0) 
+Connected component: (0x176cb8,0) (0x176d78,3) (0x176d38,2) (0x176cf8,1) 
+Roy-Floyd:
+0 3 3 1 
+3 0 4 2 
+3 4 0 2 
+1 2 2 0 

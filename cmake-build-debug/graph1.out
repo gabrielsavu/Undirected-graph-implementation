@@ -1,24 +1,55 @@
-0
-1 2 
+Position in memory: 0x176438
+Name: 0
+Adjacency list: (0x176478,1) (0x1764b8,2) (0x1764f8,3) 
 ------------
-1
-0 3 4 
+Position in memory: 0x176478
+Name: 1
+Adjacency list: (0x176438,0) (0x1764f8,3) (0x176538,4) (0x1764b8,2) 
 ------------
-2
-0 5 
+Position in memory: 0x1764b8
+Name: 2
+Adjacency list: (0x176438,0) (0x176478,1) (0x176578,5) (0x1764f8,3) 
 ------------
-3
-1 
+Position in memory: 0x1764f8
+Name: 3
+Adjacency list: (0x176438,0) (0x176478,1) (0x1764b8,2) 
 ------------
-4
-1 
+Position in memory: 0x176538
+Name: 4
+Adjacency list: (0x176478,1) 
 ------------
-5
-2 6 7 
+Position in memory: 0x176578
+Name: 5
+Adjacency list: (0x1764b8,2) (0x1765b8,6) (0x1765f8,7) 
 ------------
-6
-5 
+Position in memory: 0x1765b8
+Name: 6
+Adjacency list: (0x176578,5) 
 ------------
-7
-5 
+Position in memory: 0x1765f8
+Name: 7
+Adjacency list: (0x176578,5) 
 ------------
+Position in memory: 0x176638
+Name: 8
+Adjacency list: (0x176678,9) 
+------------
+Position in memory: 0x176678
+Name: 9
+Adjacency list: (0x176638,8) 
+------------
+DFS from node (0x176438,0): (0x176438,0) (0x1764f8,3) (0x1764b8,2) (0x176578,5) (0x1765f8,7) (0x1765b8,6) (0x176478,1) (0x176538,4) 
+BFS from node (0x176438,0): (0x176438,0) (0x176478,1) (0x1764b8,2) (0x1764f8,3) (0x176538,4) (0x176578,5) (0x1765b8,6) (0x1765f8,7) 
+Connected component: (0x176438,0) (0x1764f8,3) (0x1764b8,2) (0x176578,5) (0x1765f8,7) (0x1765b8,6) (0x176478,1) (0x176538,4) 
+Connected component: (0x176638,8) (0x176678,9) 
+Roy-Floyd:
+0 1 2 3 1 1 1 1 1 1 
+1 0 1 2 0 0 0 0 0 0 
+2 1 0 3 1 1 1 1 1 1 
+3 2 3 0 2 2 2 2 2 2 
+1 0 1 2 0 0 0 0 0 0 
+1 0 1 2 0 0 0 0 0 0 
+1 0 1 2 0 0 0 0 0 0 
+1 0 1 2 0 0 0 0 0 0 
+1 0 1 2 0 0 0 0 0 0 
+1 0 1 2 0 0 0 0 0 0 

@@ -6,8 +6,14 @@
 
 #IncludeRegexTransform: 
 
+D:/C++/graph-implementation/graph.cpp
+graph.h
+D:/C++/graph-implementation/graph.h
+
 D:/C++/graph-implementation/graph.h
 iostream
+-
+string
 -
 queue
 -
@@ -15,6 +21,12 @@ stack
 -
 list
 -
+exception
+-
+bits/stdc++.h
+-
+node.h
+D:/C++/graph-implementation/node.h
 
 D:/C++/graph-implementation/main.cpp
 iostream
@@ -25,4 +37,14 @@ list
 -
 graph.h
 D:/C++/graph-implementation/graph.h
+
+D:/C++/graph-implementation/node.h
+iostream
+-
+string
+-
+algorithm
+-
+list
+-
 

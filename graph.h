@@ -10,6 +10,8 @@
 #include <queue>
 #include <stack>
 #include <list>
+#include <exception>
+#include <bits/stdc++.h>
 #include "node.h"
 
 class Graph {
@@ -23,12 +25,15 @@ public:
     explicit Graph(unsigned);
     Graph(const Graph&);
     void allocMemory(unsigned);
-    void addLink(unsigned, unsigned);
-    void BFSUtil(unsigned, bool[]);
-    void DFSUtil(unsigned, bool[]);
-    void DFS(unsigned start);
-    void BFS(unsigned start);
-    void connectedComponents();
+    void freeMemory();
+    void addLink(Node*, Node*, float);
+    void BFSUtil(unsigned, bool[], std::list<Node*>&);
+    void DFSUtil(unsigned, bool[], std::list<Node*>&);
+    void DFS(unsigned start, std::ostream&);
+    void BFS(unsigned start, std::ostream&);
+    void connectedComponents(std::ostream& out);
+    bool isConnectedComponents();
+    void RoyFloyd(std::ostream&);
     friend std::ostream& operator << (std::ostream&, const Graph&);
     friend std::istream& operator >> (std::istream&, Graph&);
     bool operator == (const Graph&);

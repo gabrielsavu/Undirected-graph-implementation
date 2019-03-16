@@ -3,7 +3,12 @@
 
 CMakeFiles/graph_implementation.dir/graph.cpp.obj: ../graph.cpp
 CMakeFiles/graph_implementation.dir/graph.cpp.obj: ../graph.h
+CMakeFiles/graph_implementation.dir/graph.cpp.obj: ../node.h
 
 CMakeFiles/graph_implementation.dir/main.cpp.obj: ../graph.h
 CMakeFiles/graph_implementation.dir/main.cpp.obj: ../main.cpp
+CMakeFiles/graph_implementation.dir/main.cpp.obj: ../node.h
+
+CMakeFiles/graph_implementation.dir/node.cpp.obj: ../node.cpp
+CMakeFiles/graph_implementation.dir/node.cpp.obj: ../node.h
 

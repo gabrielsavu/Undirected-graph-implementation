@@ -1,8 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <list>
 #include "graph.h"
-
 
 
 int main() {
@@ -16,7 +14,6 @@ int main() {
 
     in1 >> *f;
     in2 >> *g;
-
 
     out2 << *g;
     g->DFS(1, out2);

@@ -8,4 +8,4 @@ include_directories(.)
 add_executable(graph_implementation
     graph.cpp
     graph.h
-    main.cpp node.cpp node.h)
+    main.cpp node.cpp node.h link.cpp link.h)
